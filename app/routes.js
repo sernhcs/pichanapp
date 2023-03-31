@@ -39,7 +39,7 @@ router.delete('/api/posts/:id',auth, PostController.find, PostPolicy.delete,Post
 
 //Rutas para control de usuarios
 router.all('/api/users', UserController.index);
-router.post('/api/create/users', UserController.create);
+router.post('/api/users', UserController.create);
 router.get('/api/users/:id', UserController.find, UserController.show);
 router.post('/api/users/:id', UserController.find, UserController.update);
 router.post('/api/users-delete/:id', UserController.find,UserController.delete);
