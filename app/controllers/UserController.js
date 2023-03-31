@@ -7,10 +7,9 @@ module.exports={
     async find(req,res,next){
         let user = await User.findByPk(req.params.id,{
             attributes: [
-                'id','name','username','lastname','phone','document_number','email'
+                'id','name','username','lastname','phone','document_number','email','password'
             ],
         });
-
         if(!user){
             res.status(404).json({msg:"User no encontrado"});
         }else {
@@ -65,6 +64,7 @@ module.exports={
             if(exist_user){
                 return res.status(400).json({status:false,message:'el numero ya esta registrado'});
             }
+
             // trae los campos ya registrados
             req.userModel.name = req.body.name;
             req.userModel.lastname = req.body.lastname;
@@ -74,6 +74,10 @@ module.exports={
             req.userModel.document_number = req.body.document_number;
             req.userModel.status = req.body.status;
             req.userModel.score = req.body.score;
+
+            if(req.body.password && req.body.password.length>0){
+                req.userModel.password = bcrypt.hashSync(req.body.password, Number.parseInt(authConfig.rounds));
+            }
 
             // guarda la modificaciòn de user
             req.userModel.save().then(user =>{

@@ -38,14 +38,14 @@ router.patch('/api/posts/:id',auth, PostController.find,PostPolicy.update, PostC
 router.delete('/api/posts/:id',auth, PostController.find, PostPolicy.delete,PostController.delete);
 
 //Rutas para control de usuarios
-router.all('/api/users', UserController.index);
-router.post('/api/users', UserController.create);
+router.get('/api/users', UserController.index);
+router.post('/api/users/create', UserController.create);
 router.get('/api/users/:id', UserController.find, UserController.show);
 router.post('/api/users/:id', UserController.find, UserController.update);
 router.post('/api/users-delete/:id', UserController.find,UserController.delete);
 
 //Rutas para control de canchas(sport_grounds)
-router.all('/api/sport_grounds', SportGroundController.index);
+router.get('/api/sport_grounds', SportGroundController.index);
 router.post('/api/create/sport_grounds', SportGroundController.create);
 router.get('/api/sport_grounds/:id', SportGroundController.find, SportGroundController.show);
 router.post('/api/sport_grounds/:id', SportGroundController.validate('createSportGround'),  SportGroundController.find, SportGroundController.update);
