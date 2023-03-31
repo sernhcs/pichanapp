@@ -7,7 +7,6 @@ module.exports={
   database: process.env.DB_DATABASE||"db_jwtand",
   host: process.env.DB_HOST||"localhost",
   dialect: process.env.DB_DIALECT||"mysql",
-  port: process.env.DB_PORT||"3306",
 
   //configurar seeds
   seederStorage:"sequelize",
